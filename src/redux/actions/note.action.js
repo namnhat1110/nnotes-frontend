@@ -62,7 +62,7 @@ const updateNote = (note, noteId) => async (dispatch) => {
             type: types.UPDATE_NOTE_SUCCESS,
             payload: data.data.note
         });
-        window.location.href = "http://localhost:3000/notes"
+        window.location.href = "https://nnotes-editor.netlify.app/notes"
     } catch (error) {
         toast.error(error.message);
         dispatch({ type: types.UPDATE_NOTE_FAILURE, payload: error });
