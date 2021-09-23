@@ -1,0 +1,93 @@
+.section-1 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    height: 90vh;  
+   
+}
+
+.section-1 .left-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.section-1 .right-content {
+   display: flex;
+   text-align: center;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ 
+}
+
+.section-1 .right-content h1 {
+    font-size: 3rem;
+    padding-bottom: 1rem;
+}
+
+.section-1 .right-content h2 {
+    font-size: 1.75rem;
+}
+
+.section-2 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    height: 90vh;
+    background: black;
+    color: white;
+}
+
+.section-2 .left-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.section-2 .left-column h1 {
+    font-size: 3rem;
+}
+
+.section-2 .right-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-2 .right-column .carousel-image {
+    height: 30rem;
+    width:  40rem;
+}
+
+.section-2 .right-column .caption {
+    position: relative;
+    padding-top: 3rem;
+    left: auto;
+    right: auto;
+}
+
+.section-3 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    height: 30vh;  
+    background-image: url(https://www.pngitem.com/pimgs/m/160-1605161_cities-background-for-footer-skyline-hd-png-download.png);
+}
+
+.section-3 .first-col{
+    display: flex;
+    flex-direction: column;
+}
+.section-3 .second-col{
+    display: flex;
+    flex-direction: column;
+}
+.section-3 .third-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.section-3 .last-col{
+    display: flex;
+    flex-direction: column;
+}

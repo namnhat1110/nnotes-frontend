@@ -1,0 +1,38 @@
+.main-content {
+    background: #333;
+    height: 100vh;
+    display: block;
+    overflow: hidden;
+    overflow-y: scroll;
+  
+}
+
+.main-content .title-container {
+    display: flex;
+    text-align: center;
+    color: white;
+}
+
+.main-content .card {
+    height: 8rem;
+    border-radius: 20px;
+    padding: 0
+}
+
+.main-content .card .title {
+    margin-bottom: 1rem;
+    font-weight: bolder;
+}
+
+.main-content .card .sub-title {
+    font-size: small;
+    margin-bottom: 1rem;
+}
+
+.main-content .button-group {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+

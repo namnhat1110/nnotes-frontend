@@ -1,0 +1,26 @@
+.register-container {
+     display: flex;
+    background: #333;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.form-border {
+    display: flex;
+    flex-direction: column;
+    height: 430px;
+    width: 400px;
+    padding: 10px;
+    border: solid 1px white;
+}
+
+.form-border .form-button {
+    display: flex;
+    justify-content: center;
+}
+
+.form-border .note {
+    text-align: end;
+}

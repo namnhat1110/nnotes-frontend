@@ -1,0 +1,29 @@
+.main-container {
+    display: flex;
+    background: #333;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    height: 360px;
+    width: 400px;
+    padding: 10px;
+    border: solid 1px white;
+}
+
+.form-box .form-email {
+    margin-top: 2rem;
+}
+
+.form-box .form-btn {
+    display: flex;
+    justify-content: center;
+}
+.form-box .note {
+    text-align: end
+}

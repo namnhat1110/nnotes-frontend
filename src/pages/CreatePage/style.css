@@ -1,0 +1,31 @@
+
+.page-container {
+    padding-top: 2rem;
+    background: #232946;
+}
+
+.title-form {
+    padding: 0;
+    border-radius: 0px;
+}
+
+.editor-container {
+    box-sizing: border-box;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background: white;
+    height: 70vh;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+
+.footer-container {
+    padding-bottom: 1rem;
+}
+
+.footer-container button {
+    width: 100%;
+    background: #b8c1ec;
+    color: #232946;
+}
