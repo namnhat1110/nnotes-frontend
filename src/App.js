@@ -8,19 +8,27 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import NotesPage from "./pages/NotePage/NotesPage";
 import CollabPage from "./pages/CollabPage/CollabPage";
 import NoteDetailPage from "./pages/NoteDetailPage/NoteDetailPage";
-import CreatePage from "./pages/CreatePage/CreatePage"
+import CreatePage from "./pages/CreatePage/CreatePage";
 import EmailForm from "./components/SendEmail/EmailForm";
-import './App.css'
-
+import "./App.css";
 
 function App() {
   return (
     <Router>
       <Switch>
         <PublicRoute restricted={true} exact path="/" component={HomePage} />
-        <PublicRoute restricted={true} exact path="/login" component={LoginPage} />
-        <PublicRoute restricted={true} exact path="/register" component={RegisterPage} />
-        <PublicRoute restricted={false} exact path="/email" component={EmailForm} />
+        <PublicRoute
+          restricted={true}
+          exact
+          path="/login"
+          component={LoginPage}
+        />
+        <PublicRoute
+          restricted={true}
+          exact
+          path="/register"
+          component={RegisterPage}
+        />
         <PrivateRoute exact path="/notes" component={NotesPage} />
         <PrivateRoute exact path="/notes-collab" component={CollabPage} />
         <PrivateRoute exact path="/notes/create/:id" component={CreatePage} />
