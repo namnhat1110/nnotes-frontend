@@ -25,6 +25,13 @@ const noteReducer = (state = initialState, action) => {
         case types.GET_NOTE_DETAIL_FAILURE:
             return { ...state, loading: false };
 
+        case types.GET_COLLAB_NOTES_REQUEST:
+            return { ...state, loading: true };
+        case types.GET_COLLAB_NOTES_SUCCESS:
+            return { ...state, notes: payload, loading: false };
+        case types.GET_COLLAB_NOTES_FAILURE:
+            return { ...state, loading: false };
+
         case types.CREATE_NOTE_REQUEST:
             return { ...state, loading: true };
         case types.CREATE_NOTE_SUCCESS:

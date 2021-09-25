@@ -33,6 +33,21 @@ const getNoteDetail = (noteId) => async (dispatch) => {
     }
 };
 
+const getCollabNotes = () => async (dispatch) => {
+    dispatch({ type: types.GET_COLLAB_NOTES_REQUEST, payload: null });
+    try {
+        let url = `${process.env.REACT_APP_BACKEND_API}api/collab`;
+        const data = await api.get(url);
+        dispatch({
+            type: types.GET_COLLAB_NOTES_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        toast.error(error.message);
+        dispatch({ type: types.GET_COLLAB_NOTES_FAILURE, payload: error });
+    }
+};
+
 const createNote = (note) => async (dispatch) => {
     dispatch({ type: types.CREATE_NOTE_REQUEST, payload: null });
     try {
@@ -89,5 +104,5 @@ const deleteNote = (noteId) => async (dispatch) => {
     }
 };
 
-const notesActions = { getNotes, getNoteDetail, createNote, updateNote, deleteNote };
+const notesActions = { getNotes, getNoteDetail, getCollabNotes, createNote, updateNote, deleteNote };
 export default notesActions;

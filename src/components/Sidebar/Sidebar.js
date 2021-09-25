@@ -47,6 +47,8 @@ const SideBar = () => {
                     <ButtonGroup vertical className="button-container">
                         <div className="first-button">
                             <Button block onClick={onCreate} className="inbutton" variant="success"><MdIcons.MdNoteAdd className="side-icon" />Create Note</Button>
+                            <Button block variant="outline-light" className="inbutton2" onClick={() => history.push('/')}>My notes</Button>
+                            <Button block variant="outline-light" className="inbutton2" href="/notes-collab">Collaborative notes</Button>
                         </div>
 
                         <div className="second-button">

@@ -36,6 +36,11 @@
   padding-left: 2rem;
   padding-right: 3rem;
   justify-content: space-evenly;
+  margin-bottom: 1rem;
+}
+
+.side-bar .button-container .first-button button {
+ border: none;
 }
 
 .side-bar .button-container .second-button {

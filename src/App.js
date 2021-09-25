@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import NotesPage from "./pages/NotePage/NotesPage";
+import CollabPage from "./pages/CollabPage/CollabPage";
 import NoteDetailPage from "./pages/NoteDetailPage/NoteDetailPage";
 import CreatePage from "./pages/CreatePage/CreatePage"
 import EmailForm from "./components/SendEmail/EmailForm";
@@ -21,6 +22,7 @@ function App() {
         <PublicRoute restricted={true} exact path="/register" component={RegisterPage} />
         <PublicRoute restricted={false} exact path="/email" component={EmailForm} />
         <PrivateRoute exact path="/notes" component={NotesPage} />
+        <PrivateRoute exact path="/notes-collab" component={CollabPage} />
         <PrivateRoute exact path="/notes/create/:id" component={CreatePage} />
         <PrivateRoute exact path="/notes/:id" component={NoteDetailPage} />
       </Switch>
