@@ -15,7 +15,7 @@ const login = (user) => async (dispatch) => {
             payload: data.data
         });
         api.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.accessToken;
-        window.location.href = "https://nnotes-editor.netlify.app/"
+        window.location.href = "http://http://localhost:3000/"
 
     } catch (error) {
         toast.error(error.message);
