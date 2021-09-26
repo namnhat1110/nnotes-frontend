@@ -25,14 +25,16 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (response) => {
         console.log("Response:", response);
-        if (response?.data?.data?.accessToken) localStorage.setItem("accessToken", response.data.data.accessToken)
+        if (response?.data?.data?.accessToken)
+            localStorage.setItem("accessToken", response?.data?.data?.accessToken)
         return response.data;
     },
     function (error) {
         error = error.response.data;
         console.log('RESPONSE ERROR', error);
         let errorMsg = error.message || '';
-        if (error.errors && error.errors.message) errorMsg = errorMsg + ': ' + error.errors.message;
+        if (error.errors && error.errors.message)
+            errorMsg = errorMsg + ': ' + error.errors.message;
         toast.error(errorMsg);
         return Promise.reject(error);
     }

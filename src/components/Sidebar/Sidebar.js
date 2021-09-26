@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, ButtonGroup, Dropdown, Image } from "react-bootstrap";
+import { Button, ButtonGroup, Dropdown, Image, Form, FormControl } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import brand from "./brand.png";
 import "./style.css";
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import notesActions from "../../redux/actions/note.action";
 import authActions from "../../redux/actions/auth.action";
 import userActions from "../../redux/actions/user.action";
-import routeActions from "../../redux/actions/route.action";
+import { routeActions } from "../../redux/actions/route.action";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -56,6 +56,9 @@ const SideBar = () => {
           </div>
           <ButtonGroup vertical className="button-container">
             <div className="first-button">
+              <Form inline>
+                <FormControl type="text" placeholder="Search" className="search-form" />
+              </Form>
               <Button
                 block
                 onClick={onCreate}

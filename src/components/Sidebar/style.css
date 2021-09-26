@@ -30,6 +30,13 @@
   width: 90%;
 }
 
+.side-bar .button-container .first-button .search-form{
+  margin-bottom: 1rem;
+  width: 100%;
+  background: #333;
+  color: white;
+}
+
 .side-bar .button-container .first-button .inbutton {
   display: flex;
   align-items: center;

@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import * as types from "../constants/note.constant";
 import api from "../../apiService";
-import routeActions from "./route.action";
+import { routeActions } from "./route.action";
 
 const getNotes = () => async (dispatch) => {
   dispatch({ type: types.GET_NOTES_REQUEST, payload: null });
@@ -12,6 +12,7 @@ const getNotes = () => async (dispatch) => {
       type: types.GET_NOTES_SUCCESS,
       payload: data.data.notes,
     });
+    toast.success("Get notes successfully");
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.GET_NOTES_FAILURE, payload: error });
@@ -28,6 +29,7 @@ const getNoteDetail = (noteId) => async (dispatch) => {
       type: types.GET_NOTE_DETAIL_SUCCESS,
       payload: data.data.note,
     });
+    toast.success("Get note detail successfully");
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.GET_NOTE_DETAIL_FAILURE, payload: error });
@@ -43,6 +45,7 @@ const getCollabNotes = () => async (dispatch) => {
       type: types.GET_COLLAB_NOTES_SUCCESS,
       payload: data.data.notes,
     });
+    toast.success("Get collab notes successfully");
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.GET_COLLAB_NOTES_FAILURE, payload: error });
@@ -61,6 +64,7 @@ const createNote = (note) => async (dispatch) => {
       type: types.CREATE_NOTE_SUCCESS,
       payload: data.data.note,
     });
+    toast.success("Create note successfully");
     dispatch(routeActions.redirect(`/notes/create/${data.data.note._id}`));
   } catch (error) {
     toast.error(error.message);
@@ -79,7 +83,8 @@ const updateNote = (note, noteId) => async (dispatch) => {
       type: types.UPDATE_NOTE_SUCCESS,
       payload: data.data.note,
     });
-    dispatch(routeActions.redirect("/"));
+    toast.success("Update note successfully");
+    dispatch(routeActions.redirect("/notes"));
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.UPDATE_NOTE_FAILURE, payload: error });
@@ -97,11 +102,30 @@ const deleteNote = (noteId) => async (dispatch) => {
       type: types.DELETE_NOTE_SUCCESS,
       payload: data,
     });
-
+    toast.success("Delete note successfully");
     dispatch(notesActions.getNotes());
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.DELETE_NOTE_FAILURE, payload: error });
+  }
+};
+
+const inviteCollaborator = (email, noteId) => async (dispatch) => {
+  dispatch({ type: types.INVITE_COLLAB_REQUEST, payload: null });
+  try {
+    let url = `${process.env.REACT_APP_BACKEND_API}api/notes/invite`;
+    const data = await api.post(url, { email, noteId });
+    console.log("hahaha", data);
+
+    dispatch({
+      type: types.INVITE_COLLAB_SUCCESS,
+      payload: data.data.note,
+    });
+    toast.success("Invite collaborators successfully");
+    dispatch(routeActions.redirect("/notes"));
+  } catch (error) {
+    toast.error(error.message);
+    dispatch({ type: types.INVITE_COLLAB_FAILURE, payload: error });
   }
 };
 
@@ -112,5 +136,6 @@ const notesActions = {
   createNote,
   updateNote,
   deleteNote,
+  inviteCollaborator
 };
 export default notesActions;

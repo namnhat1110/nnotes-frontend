@@ -53,6 +53,13 @@ const noteReducer = (state = initialState, action) => {
         case types.DELETE_NOTE_FAILURE:
             return { ...state, loading: false };
 
+        case types.INVITE_COLLAB_REQUEST:
+            return { ...state, loading: true };
+        case types.INVITE_COLLAB_SUCCESS:
+            return { ...state, selectedNote: payload, loading: false };
+        case types.INVITE_COLLAB_FAILURE:
+            return { ...state, loading: false };
+
         default:
             return state;
     }

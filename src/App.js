@@ -9,12 +9,13 @@ import NotesPage from "./pages/NotePage/NotesPage";
 import CollabPage from "./pages/CollabPage/CollabPage";
 import NoteDetailPage from "./pages/NoteDetailPage/NoteDetailPage";
 import CreatePage from "./pages/CreatePage/CreatePage";
-import EmailForm from "./components/SendEmail/EmailForm";
+import Toastify from "./components/Toastify/Toastify";
 import "./App.css";
 
 function App() {
   return (
     <Router>
+      <Toastify />
       <Switch>
         <PublicRoute restricted={true} exact path="/" component={HomePage} />
         <PublicRoute

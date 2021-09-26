@@ -1,6 +1,7 @@
 import * as types from "../constants/auth.constant";
 import api from "../../apiService";
 import { toast } from "react-toastify";
+import { routeActions } from "./route.action";
 
 const login = (user) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST, payload: null });
@@ -16,6 +17,8 @@ const login = (user) => async (dispatch) => {
     });
     api.defaults.headers.common["Authorization"] =
       "Bearer " + data.data.accessToken;
+    toast.success("Login successfully!");
+    dispatch(routeActions.redirect(`/notes`));
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
@@ -34,6 +37,7 @@ const register = (user) => async (dispatch) => {
       type: types.REGISTER_SUCCESS,
       payload: data,
     });
+    toast.success("Register successfully!");
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.REGISTER_FAILURE, payload: error });

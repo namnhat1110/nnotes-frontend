@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import "./style.css";
 
 import authActions from "../../redux/actions/auth.action";
+import { routeActions } from "../../redux/actions/route.action";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const LoginPage = () => {
     (state) => state.authReducer.isAuthenticated
   );
   console.log("auth", isAuthenticated);
+  const redirectTo = useSelector((state) => state.routeReducer.redirectTo);
 
   const handleOnEmail = (e) => {
     e.preventDefault();
@@ -35,11 +37,20 @@ const LoginPage = () => {
       password: password,
     };
     dispatch(authActions.login(user));
-    if (isAuthenticated) {
-      history.push(`/notes`);
-    }
   };
-  if (isAuthenticated) return <Redirect to="/" />;
+
+  useEffect(() => {
+    if (redirectTo) {
+      if (redirectTo === "__BACK__") {
+        history.goBack();
+        dispatch(routeActions.redirect(""));
+      } else {
+        history.push(redirectTo);
+        dispatch(routeActions.redirect(""));
+      }
+    }
+  }, [redirectTo, dispatch, history]);
+
   return (
     <div>
       <NavigationBar />

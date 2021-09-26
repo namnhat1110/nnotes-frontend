@@ -4,11 +4,11 @@ import MDEditor from "@uiw/react-md-editor";
 import "./style.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams, Redirect, useHistory } from "react-router-dom";
+import { useLocation, useParams, useHistory } from "react-router-dom";
 import notesActions from "../../redux/actions/note.action";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import EmailForm from "../../components/SendEmail/EmailForm";
-import routeActions from "../../redux/actions/route.action";
+import { routeActions } from "../../redux/actions/route.action";
 
 const CreatePage = () => {
   const location = useLocation();
