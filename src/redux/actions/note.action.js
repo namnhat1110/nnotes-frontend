@@ -3,10 +3,14 @@ import * as types from "../constants/note.constant";
 import api from "../../apiService";
 import { routeActions } from "./route.action";
 
-const getNotes = () => async (dispatch) => {
+const getNotes = (search) => async (dispatch) => {
   dispatch({ type: types.GET_NOTES_REQUEST, payload: null });
   try {
     let url = `${process.env.REACT_APP_BACKEND_API}api/notes`;
+    if (search) {
+      url += `?search=${search}`
+    }
+    console.log("search", search)
     const data = await api.get(url);
     dispatch({
       type: types.GET_NOTES_SUCCESS,

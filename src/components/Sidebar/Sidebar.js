@@ -15,6 +15,7 @@ import { routeActions } from "../../redux/actions/route.action";
 const SideBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  // const loading = useSelector((state) => state.noteReducer.loading)
 
   const redirectTo = useSelector((state) => state.routeReducer.redirectTo);
 
@@ -29,6 +30,7 @@ const SideBar = () => {
       }
     }
   }, [redirectTo, dispatch, history]);
+
 
   useEffect(() => {
     dispatch(userActions.getCurrentUser());
@@ -57,7 +59,8 @@ const SideBar = () => {
           <ButtonGroup vertical className="button-container">
             <div className="first-button">
               <Form inline>
-                <FormControl type="text" placeholder="Search" className="search-form" />
+                <FormControl type="text" placeholder="Search" className="search-form"
+                />
               </Form>
               <Button
                 block

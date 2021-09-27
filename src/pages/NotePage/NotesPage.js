@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Card, Button, Container } from "react-bootstrap";
 import "./style.css";
 
@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import notesActions from "../../redux/actions/note.action";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-
+import SearchForm from "../../components/SearchForm/SearchForm";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import * as FaIcons from "react-icons/fa";
 import * as RiIcons from "react-icons/ri";
@@ -17,14 +17,26 @@ dayjs.extend(relativeTime);
 
 const NotesPage = () => {
   const notes = useSelector((state) => state.noteReducer.notes);
+  const [search, setSearch] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  console.log("input", searchInput)
+  const loading = useSelector((state) => state.noteReducer.loading);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch(notesActions.getNotes());
-  }, [dispatch]);
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
 
-  //   return <Container fluid>Note Page</Container>;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearch(searchInput);
+  };
+
+  useEffect(() => {
+    dispatch(notesActions.getNotes(search));
+  }, [search, dispatch]);
 
   return (
     <Container fluid>
@@ -33,6 +45,16 @@ const NotesPage = () => {
           <Sidebar />
         </Col>
         <Col lg="10" className="main-content">
+          <Row className="row-padding">
+            <Col lg={6} md={6} xs={12}>
+              <SearchForm
+                loading={loading}
+                searchInput={searchInput}
+                handleSearchInputChange={handleSearchInputChange}
+                handleSubmit={handleSubmit}
+              />
+            </Col>
+          </Row>
           <Row
             style={{ height: "10%", paddingTop: "0.5rem" }}
             className="title-container"
