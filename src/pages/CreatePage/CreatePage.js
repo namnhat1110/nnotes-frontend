@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import MDEditor from "@uiw/react-md-editor";
-import TagsInput from 'react-tagsinput'
-import 'react-tagsinput/react-tagsinput.css'
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 import "./style.css";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -13,17 +13,17 @@ import EmailForm from "../../components/SendEmail/EmailForm";
 import { routeActions } from "../../redux/actions/route.action";
 
 const CreatePage = () => {
-  const dispatch = useDispatch();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [tags, setTags] = useState([]);
   const params = useParams();
   const noteId = params.id;
-  const [tags, setTags] = useState([]);
-  const selectedNote = useSelector((state) => state.noteReducer.selectedNote)
 
-  const handleChangeTag = (tags) => {
-    setTags(tags)
-  }
-  const redirectTo = useSelector((state) => state.routeReducer.redirectTo);
+  const selectedNote = useSelector((state) => state.noteReducer.selectedNote);
+
+  const dispatch = useDispatch();
   const history = useHistory();
+  const redirectTo = useSelector((state) => state.routeReducer.redirectTo);
 
   useEffect(() => {
     if (redirectTo) {
@@ -37,43 +37,28 @@ const CreatePage = () => {
     }
   }, [redirectTo, dispatch, history]);
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
   useEffect(() => {
-    dispatch(notesActions.getNoteDetail(noteId))
-  }, [noteId, dispatch])
-
-
-  const handleTittle = (e) => {
-    e.preventDefault();
-    setTitle(e.target.value);
-  };
-
-  let previousNote = {
-    title: title,
-    content: content,
-    tags: tags
-  }
-
-  console.log("this previous note", previousNote)
+    if (noteId) {
+      if (selectedNote) {
+        setTitle(selectedNote.title);
+        setTags(selectedNote.tags);
+        setContent(selectedNote.content);
+      } else {
+        dispatch(notesActions.getNoteDetail(noteId));
+      }
+    }
+  }, [dispatch, noteId, selectedNote]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const note = {
-    //   title: title,
-    //   content: content,
-    //   tags: tags
-    // };
-    dispatch(notesActions.updateNote(previousNote, noteId, history));
+    const note = {
+      _id: selectedNote._id,
+      title: title,
+      content: content,
+      tags: tags,
+    };
+    dispatch(notesActions.updateNote(note));
   };
-
-  useEffect(() => {
-    if (selectedNote) {
-      setTitle(title)
-    }
-  })
-
 
   return (
     <div>
@@ -85,21 +70,20 @@ const CreatePage = () => {
               type="text"
               placeholder="Title"
               value={title}
-              onChange={handleTittle}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
-          <TagsInput
-            value={tags}
-            onChange={handleChangeTag}
-          />
+          <TagsInput value={tags} onChange={(newTags) => setTags(newTags)} />
         </Row>
         <Row className="editor-container">
-          <MDEditor value={content} onChange={setContent} height="475" />
+          <MDEditor
+            value={content}
+            onChange={(newValue) => setContent(newValue)}
+            height="475"
+          />
         </Row>
         <Row className="footer-container">
-          <Col lg="6">
-
-          </Col>
+          <Col lg="6"></Col>
           <Col lg="3">
             <EmailForm />
           </Col>
