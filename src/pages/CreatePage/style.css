@@ -1,6 +1,5 @@
-
 .page-container {
-    padding-top: 2rem;
+    padding-top: 1rem;
     background: #232946;
 }
 
@@ -22,6 +21,8 @@
 
 .footer-container {
     padding-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
 }
 
 .footer-container button {

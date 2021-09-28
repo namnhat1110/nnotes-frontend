@@ -12,7 +12,7 @@ import authActions from "../../redux/actions/auth.action";
 import userActions from "../../redux/actions/user.action";
 import { routeActions } from "../../redux/actions/route.action";
 
-const SideBar = () => {
+const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   // const loading = useSelector((state) => state.noteReducer.loading)
@@ -36,7 +36,6 @@ const SideBar = () => {
     dispatch(userActions.getCurrentUser());
   }, [dispatch]);
 
-  //   const singlenewnote = useSelector((state) => state.noteReducer.singlenewnote);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
 
   const onCreate = () => {
@@ -58,9 +57,10 @@ const SideBar = () => {
           </div>
           <ButtonGroup vertical className="button-container">
             <div className="first-button">
-              <Form inline>
+              <Form inline onSubmit={handleSubmit}>
                 <FormControl type="text" placeholder="Search" className="search-form"
-                />
+                  value={searchInput}
+                  onChange={handleSearchInputChange} />
               </Form>
               <Button
                 block

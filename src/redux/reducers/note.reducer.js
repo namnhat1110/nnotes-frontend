@@ -3,8 +3,9 @@ import * as types from "../constants/note.constant";
 const initialState = {
     notes: [],
     loading: false,
-    singlenewnote: null,
     selectedNote: null,
+    updatedNote: null,
+    tags: []
 };
 
 const noteReducer = (state = initialState, action) => {
@@ -35,14 +36,14 @@ const noteReducer = (state = initialState, action) => {
         case types.CREATE_NOTE_REQUEST:
             return { ...state, loading: true };
         case types.CREATE_NOTE_SUCCESS:
-            return { ...state, singlenewnote: payload, loading: false };
+            return { ...state, selectedNote: payload, loading: false };
         case types.CREATE_NOTE_FAILURE:
             return { ...state, loading: false };
 
         case types.UPDATE_NOTE_REQUEST:
             return { ...state, loading: true };
         case types.UPDATE_NOTE_SUCCESS:
-            return { ...state, singlenewnote: payload, loading: false };
+            return { ...state, updatedNote: payload, loading: false };
         case types.UPDATE_NOTE_FAILURE:
             return { ...state, loading: false };
 

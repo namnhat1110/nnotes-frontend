@@ -9,7 +9,6 @@ import NotesPage from "./pages/NotePage/NotesPage";
 import CollabPage from "./pages/CollabPage/CollabPage";
 import NoteDetailPage from "./pages/NoteDetailPage/NoteDetailPage";
 import CreatePage from "./pages/CreatePage/CreatePage";
-import SearchForm from "./components/SearchForm/SearchForm";
 import Toastify from "./components/Toastify/Toastify";
 import "./App.css";
 
@@ -32,7 +31,6 @@ function App() {
           component={RegisterPage}
         />
         <PrivateRoute exact path="/notes" component={NotesPage} />
-        <PrivateRoute exact path="/notes/search" component={SearchForm} />
         <PrivateRoute exact path="/notes-collab" component={CollabPage} />
         <PrivateRoute exact path="/notes/create/:id" component={CreatePage} />
         <PrivateRoute exact path="/notes/:id" component={NoteDetailPage} />

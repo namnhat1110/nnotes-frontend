@@ -49,10 +49,28 @@ const getCollabNotes = () => async (dispatch) => {
       type: types.GET_COLLAB_NOTES_SUCCESS,
       payload: data.data.notes,
     });
-    toast.success("Get collab notes successfully");
+    if (data) {
+      toast.success("Get collab notes successfully");
+    }
+
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.GET_COLLAB_NOTES_FAILURE, payload: error });
+  }
+};
+
+const getAllTags = () => async (dispatch) => {
+  dispatch({ type: types.GET_TAGS_REQUEST, payload: null });
+  try {
+    let url = `${process.env.REACT_APP_BACKEND_API}api/notes/tags`;
+    const data = await api.get(url);
+    dispatch({
+      type: types.GET_TAGS_SUCCESS,
+      payload: data.data.tags,
+    });
+  } catch (error) {
+    toast.error(error.message);
+    dispatch({ type: types.GET_TAGS_FAILURE, payload: error });
   }
 };
 
@@ -76,11 +94,11 @@ const createNote = (note) => async (dispatch) => {
   }
 };
 
-const updateNote = (note, noteId) => async (dispatch) => {
+const updateNote = (previousNote, noteId, history) => async (dispatch) => {
   dispatch({ type: types.UPDATE_NOTE_REQUEST, payload: null });
   try {
     let url = `${process.env.REACT_APP_BACKEND_API}api/notes/${noteId}`;
-    const data = await api.put(url, note);
+    const data = await api.put(url, previousNote);
     console.log("hahaha", data);
 
     dispatch({
@@ -137,6 +155,7 @@ const notesActions = {
   getNotes,
   getNoteDetail,
   getCollabNotes,
+  getAllTags,
   createNote,
   updateNote,
   deleteNote,

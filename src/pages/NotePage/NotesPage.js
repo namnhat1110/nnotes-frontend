@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom";
 import notesActions from "../../redux/actions/note.action";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import SearchForm from "../../components/SearchForm/SearchForm";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import * as FaIcons from "react-icons/fa";
 import * as RiIcons from "react-icons/ri";
@@ -17,6 +16,7 @@ dayjs.extend(relativeTime);
 
 const NotesPage = () => {
   const notes = useSelector((state) => state.noteReducer.notes);
+  const tags = useSelector((state) => state.noteReducer.tags)
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
   console.log("input", searchInput)
@@ -38,23 +38,21 @@ const NotesPage = () => {
     dispatch(notesActions.getNotes(search));
   }, [search, dispatch]);
 
+  useEffect(() => {
+    dispatch(notesActions.getAllTags())
+  }, [dispatch])
+
   return (
     <Container fluid>
       <Row>
         <Col lg="2" sm="0" style={{ paddingRight: 0, paddingLeft: 0 }}>
-          <Sidebar />
+          <Sidebar
+            loading={loading}
+            searchInput={searchInput}
+            handleSearchInputChange={handleSearchInputChange}
+            handleSubmit={handleSubmit} />
         </Col>
         <Col lg="10" className="main-content">
-          <Row className="row-padding">
-            <Col lg={6} md={6} xs={12}>
-              <SearchForm
-                loading={loading}
-                searchInput={searchInput}
-                handleSearchInputChange={handleSearchInputChange}
-                handleSubmit={handleSubmit}
-              />
-            </Col>
-          </Row>
           <Row
             style={{ height: "10%", paddingTop: "0.5rem" }}
             className="title-container"
