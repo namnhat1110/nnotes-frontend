@@ -67,6 +67,8 @@ const noteReducer = (state = initialState, action) => {
     case types.INVITE_COLLAB_FAILURE:
       return { ...state, loading: false };
 
+    case types.CHANGE_SELECTED_NOTE:
+      return { ...state, selectedNote: payload };
     default:
       return state;
   }

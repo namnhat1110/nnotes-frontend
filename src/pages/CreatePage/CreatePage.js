@@ -22,6 +22,7 @@ const socketTypes = {
   MSG_INIT: "MESSAGE_INIT",
   MSG_SEND: "MESSAGE_SEND",
   MSG_RECEIVE: "MESSAGE_RECEIVE",
+  NOTE_UPDATE: "NOTE_UPDATE",
 };
 
 const CreatePage = () => {
@@ -48,12 +49,20 @@ const CreatePage = () => {
       if (redirectTo === "__BACK__") {
         history.goBack();
         dispatch(routeActions.redirect(""));
+      } else if (redirectTo === "__UPDATE_NOTE__") {
+        dispatch(routeActions.redirect(""));
+        console.log("UPDATED NOTE");
+        if (selectedNote?._id) {
+          socket.emit(socketTypes.NOTE_UPDATE, {
+            noteId: selectedNote._id,
+          });
+        }
       } else {
         history.push(redirectTo);
         dispatch(routeActions.redirect(""));
       }
     }
-  }, [redirectTo, dispatch, history]);
+  }, [redirectTo, dispatch, history, selectedNote]);
 
   useEffect(() => {
     if (noteId) {
@@ -100,6 +109,9 @@ const CreatePage = () => {
         }
         if (data.newComment) {
           setComments((comments) => [...comments, data.newComment]);
+        }
+        if (data.updatedNote) {
+          dispatch(notesActions.changeSelectedNote(data.updatedNote));
         }
       });
 

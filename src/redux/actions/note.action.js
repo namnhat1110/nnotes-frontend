@@ -121,7 +121,7 @@ const updateNote = (note) => async (dispatch) => {
       payload: data.data.note,
     });
     toast.success("Update note successfully");
-    dispatch(routeActions.redirect("/notes"));
+    dispatch(routeActions.redirect("__UPDATE_NOTE__"));
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.UPDATE_NOTE_FAILURE, payload: error });
@@ -166,6 +166,11 @@ const inviteCollaborator = (email, noteId) => async (dispatch) => {
   }
 };
 
+const changeSelectedNote = (selectedNote) => ({
+  type: types.CHANGE_SELECTED_NOTE,
+  payload: selectedNote,
+});
+
 const notesActions = {
   getNotes,
   getNoteDetail,
@@ -176,5 +181,6 @@ const notesActions = {
   updateNote,
   deleteNote,
   inviteCollaborator,
+  changeSelectedNote,
 };
 export default notesActions;
