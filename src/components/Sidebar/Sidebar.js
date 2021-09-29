@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { Button, ButtonGroup, Dropdown, Image, Form, FormControl } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Dropdown,
+  Image,
+  Form,
+  FormControl,
+} from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import brand from "./brand.png";
 import "./style.css";
@@ -16,6 +23,7 @@ const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   // const loading = useSelector((state) => state.noteReducer.loading)
+  const currentUser = useSelector((state) => state.authReducer.user);
 
   const redirectTo = useSelector((state) => state.routeReducer.redirectTo);
 
@@ -30,13 +38,6 @@ const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
       }
     }
   }, [redirectTo, dispatch, history]);
-
-
-  useEffect(() => {
-    dispatch(userActions.getCurrentUser());
-  }, [dispatch]);
-
-  const currentUser = useSelector((state) => state.userReducer.currentUser);
 
   const onCreate = () => {
     dispatch(notesActions.createNote({ title: "Untitle", content: "" }));
@@ -58,9 +59,13 @@ const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
           <ButtonGroup vertical className="button-container">
             <div className="first-button">
               <Form inline onSubmit={handleSubmit}>
-                <FormControl type="text" placeholder="Search" className="search-form"
+                <FormControl
+                  type="text"
+                  placeholder="Search"
+                  className="search-form"
                   value={searchInput}
-                  onChange={handleSearchInputChange} />
+                  onChange={handleSearchInputChange}
+                />
               </Form>
               <Button
                 block
@@ -83,7 +88,8 @@ const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
                 block
                 variant="outline-light"
                 className="inbutton2"
-                href="/notes-collab"
+                onClick={() => history.push("/notes-collab")}
+                // href="/notes-collab"
               >
                 Collaborative notes
               </Button>

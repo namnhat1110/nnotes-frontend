@@ -17,11 +17,29 @@ const login = (user) => async (dispatch) => {
     });
     api.defaults.headers.common["Authorization"] =
       "Bearer " + data.data.accessToken;
+    localStorage.setItem("accessToken", data.data.accessToken);
     toast.success("Login successfully!");
     dispatch(routeActions.redirect(`/notes`));
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
+  }
+};
+
+const getCurrentUser = (accessToken) => async (dispatch) => {
+  dispatch({ type: types.GET_USER_REQUEST, payload: null });
+  try {
+    if (accessToken)
+      api.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
+    let url = `${process.env.REACT_APP_BACKEND_API}api/user/me`;
+    const data = await api.get(url);
+    dispatch({
+      type: types.GET_USER_SUCCESS,
+      payload: data.data,
+    });
+  } catch (error) {
+    toast.error(error.message);
+    dispatch({ type: types.GET_USER_FAILURE, payload: error });
   }
 };
 
@@ -50,5 +68,5 @@ const logout = () => (dispatch) => {
   dispatch({ type: types.LOGOUT, payload: null });
 };
 
-const authActions = { register, login, logout };
+const authActions = { getCurrentUser, register, login, logout };
 export default authActions;

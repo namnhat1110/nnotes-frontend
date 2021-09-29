@@ -1,45 +1,46 @@
 .page-container {
-    padding-top: 1rem;
-    background: #232946;
+  padding-top: 1rem;
+  background: #232946;
+  height: calc(100vh - 56px);
+  /* background-color: red; */
 }
 
 .title-form {
-    padding: 0;
-    border-radius: 0px;
+  padding: 0;
+  border-radius: 0px;
 }
 
 .editor-container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background: white;
-    height: 66vh;
-    margin-bottom: 1rem;
-    display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background: white;
+  margin-bottom: 1rem;
+  height: 100%;
+  display: block;
 }
 
 .editor-container .display-box {
-    height: 90%;
-    border: solid 0.25px rgb(192, 192, 192);
-    margin-bottom: 0.4rem;
-    display: block;
-    overflow: hidden;
-    overflow-y: auto;
+  height: 95%;
+  border: solid 0.25px rgb(192, 192, 192);
+  margin-bottom: 0.4rem;
+  display: block;
+  /* overflow: hidden; */
+  overflow-y: auto;
 }
 
 .editor-container .chat-box {
-    background: royalblue;
-    width: 100%;
+  background: royalblue;
+  width: 100%;
 }
 
-
 .footer-container {
-    padding-bottom: 1rem;
-    display: flex;
-    flex-direction: row;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .footer-container button {
-    width: 100%;
-    background: #b8c1ec;
-    color: #232946;
+  width: 100%;
+  background: #b8c1ec;
+  color: #232946;
 }
