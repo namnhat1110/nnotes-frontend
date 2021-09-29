@@ -76,11 +76,24 @@ const CreatePage = () => {
           <TagsInput value={tags} onChange={(newTags) => setTags(newTags)} />
         </Row>
         <Row className="editor-container">
-          <MDEditor
-            value={content}
-            onChange={(newValue) => setContent(newValue)}
-            height="475"
-          />
+          <Col lg="9">
+            <MDEditor
+              value={content}
+              onChange={(newValue) => setContent(newValue)}
+              height="440"
+            />
+          </Col>
+          <Col lg="3">
+            <div className="display-box">
+            </div>
+            <div className="chat-box">
+              <Form>
+                <Form.Row>
+                  <Form.Control type="tẽt" placeholder="Comment" name="comment" />
+                </Form.Row>
+              </Form>
+            </div>
+          </Col>
         </Row>
         <Row className="footer-container">
           <Col lg="6"></Col>

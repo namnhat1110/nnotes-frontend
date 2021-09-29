@@ -9,13 +9,26 @@
 }
 
 .editor-container {
-    box-sizing: border-box;
     padding-top: 1rem;
     padding-bottom: 1rem;
     background: white;
-    height: 70vh;
+    height: 66vh;
     margin-bottom: 1rem;
     display: block;
+}
+
+.editor-container .display-box {
+    height: 90%;
+    border: solid 0.25px rgb(192, 192, 192);
+    margin-bottom: 0.4rem;
+    display: block;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.editor-container .chat-box {
+    background: royalblue;
+    width: 100%;
 }
 
 

@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Card, Button, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import "./style.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import notesActions from "../../redux/actions/note.action";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
-
 import NotesOfTag from "../../components/NotesOfTag";
-import NoteCard from "../../components/NoteCard";
 
 const CollabPage = () => {
-  const notes = useSelector((state) => state.noteReducer.notes);
   const tags = useSelector((state) => state.noteReducer.tags);
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
@@ -20,7 +16,6 @@ const CollabPage = () => {
   const loading = useSelector((state) => state.noteReducer.loading);
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -55,7 +50,7 @@ const CollabPage = () => {
             style={{ height: "10%", paddingTop: "0.5rem" }}
             className="title-container"
           >
-            <h2> My Notes</h2>
+            <h2> Collaborative Notes</h2>
             <hr className="solid" style={{ color: "white" }}></hr>
           </Row>
           <Row style={{ paddingRight: "2rem" }}>
