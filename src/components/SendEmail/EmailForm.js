@@ -92,6 +92,8 @@ const EmailForm = () => {
         </Modal.Body>
       </Modal>
 
+      {/* note */}
+
       {/* <Form>
                     <Form.Row>
                         <Col>
