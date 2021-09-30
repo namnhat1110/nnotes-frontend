@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import MDEditor from "@uiw/react-md-editor";
 import TagsInput from "react-tagsinput";
-import ScrollToBottom from 'react-scroll-to-bottom';
+import ScrollToBottom from "react-scroll-to-bottom";
 import "react-tagsinput/react-tagsinput.css";
 import "./style.css";
 
@@ -34,7 +34,7 @@ const CreatePage = () => {
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  console.log(onlineUsers)
+  console.log(onlineUsers);
   const params = useParams();
   const noteId = params.id;
 
@@ -141,10 +141,7 @@ const CreatePage = () => {
   return (
     <div>
       <NavigationBar />
-      <Container
-        fluid
-        className="page-container d-flex flex-column justify-content-between"
-      >
+      <Container fluid className="page-container">
         <Row className="title-container mb-2">
           <Form.Group controlId="formBasicTitle" className="title-form">
             <Form.Control
@@ -166,32 +163,36 @@ const CreatePage = () => {
             <MDEditor
               value={content}
               onChange={(newValue) => setContent(newValue)}
-              height="440"
               preview={isAuthor ? "live" : "preview"}
               hideToolbar={!isAuthor}
+              enableScroll={true}
+              highlightEnable={true}
             />
           </Col>
           <Col lg="3">
-            <div className="display-box">
-              <ScrollToBottom>
-                <ul className="list-unstyled">
-                  {comments.length > 0 ? (
-                    comments.map((comment) => (
-                      <li key={comment._id}>
-                        <div className="pl-2">
-                          <span>
-                            <strong>{comment.author.username}:</strong>
-                          </span>
-                          <span className="text-secondary">{comment.body}</span>
-                        </div>
-                      </li>
-                    ))
-                  ) : (
-                    <></>
-                  )}
-                </ul>
-              </ScrollToBottom>
-            </div>
+            {/* <h4 className="text-success font-weight-bold">
+              {onlineUsers.length} online
+            </h4> */}
+            <ScrollToBottom className="messages border mb-2">
+              <ul className="list-unstyled">
+                {comments.length > 0 ? (
+                  comments.map((comment) => (
+                    <li key={comment._id}>
+                      <div className="pl-2">
+                        <span>
+                          <strong>{comment.author.username}:</strong>
+                        </span>
+                        <span className="text-secondary ml-2">
+                          {comment.body}
+                        </span>
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <></>
+                )}
+              </ul>
+            </ScrollToBottom>
             <div className="chat-box">
               <Form onSubmit={handleSendComment}>
                 <Form.Row>
@@ -221,9 +222,7 @@ const CreatePage = () => {
               </Col>
             </>
           ) : (
-            <>
-
-            </>
+            <></>
           )}
         </Row>
       </Container>

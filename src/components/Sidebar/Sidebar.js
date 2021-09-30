@@ -42,7 +42,8 @@ const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(authActions.logout());
-    history.push(`/`);
+    history.push("/");
+    // window.location.assign(window.location);
   };
 
   return (

@@ -11,15 +11,17 @@ const login = (user) => async (dispatch) => {
     const data = await api.post(url, user);
     console.log("hahaha", data);
 
+    api.defaults.headers.common["Authorization"] =
+      "Bearer " + data.data.accessToken;
+    console.log("HEADERS", api.defaults.headers.common);
+    localStorage.setItem("accessToken", data.data.accessToken);
+
     dispatch({
       type: types.LOGIN_SUCCESS,
       payload: data.data,
     });
-    api.defaults.headers.common["Authorization"] =
-      "Bearer " + data.data.accessToken;
-    localStorage.setItem("accessToken", data.data.accessToken);
     toast.success("Login successfully!");
-    dispatch(routeActions.redirect(`/notes`));
+    // dispatch(routeActions.redirect(`/notes`));
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
@@ -29,8 +31,10 @@ const login = (user) => async (dispatch) => {
 const getCurrentUser = (accessToken) => async (dispatch) => {
   dispatch({ type: types.GET_USER_REQUEST, payload: null });
   try {
-    if (accessToken)
+    if (accessToken) {
+      //   console.log("---------------------", accessToken);
       api.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
+    }
     let url = `${process.env.REACT_APP_BACKEND_API}api/user/me`;
     const data = await api.get(url);
     dispatch({

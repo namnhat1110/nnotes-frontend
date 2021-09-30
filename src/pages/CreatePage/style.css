@@ -14,16 +14,7 @@
   padding-bottom: 1rem;
   background: white;
   display: block;
-  height: 65vh;
-}
-
-.editor-container .display-box {
-  height: 55vh;
-  border: solid 0.25px rgb(192, 192, 192);
-  margin-bottom: 0.4rem;
-  display: block;
-  overflow:hidden;
-  overflow-y: auto
+  /* height: 65vh; */
 }
 
 .editor-container .chat-box {
@@ -43,4 +34,9 @@
   width: 100%;
   background: #b8c1ec;
   color: #35363d;
+}
+
+.messages {
+  overflow: auto;
+  height: 500px;
 }

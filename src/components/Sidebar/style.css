@@ -1,4 +1,3 @@
-
 .menu-bars {
   margin-left: 2rem;
   font-size: 2rem;
@@ -15,8 +14,6 @@
   flex-direction: column;
 }
 
-
-
 .side-bar .button-container {
   width: 100%;
   height: 90%;
@@ -30,7 +27,7 @@
   width: 90%;
 }
 
-.side-bar .button-container .first-button .search-form{
+.side-bar .button-container .first-button .search-form {
   margin-bottom: 1rem;
   width: 100%;
   background: #333;
@@ -42,7 +39,7 @@
 }
 
 .side-bar .button-container .first-button button {
- border: none;
+  border: none;
 }
 
 .side-bar .button-container .second-button {
@@ -53,16 +50,7 @@
   width: 100%;
 }
 
-
 .side-icon {
-  
   list-style: none;
   height: 30px;
-}
-
-
-
-
-span {
-  margin-left: 16px;
 }

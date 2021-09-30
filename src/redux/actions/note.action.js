@@ -11,6 +11,7 @@ const getNotes = (search) => async (dispatch) => {
       url += `?search=${search}`;
     }
     console.log("search", search);
+    console.log("HEADERS", api.defaults.headers.common);
     const data = await api.get(url);
     dispatch({
       type: types.GET_NOTES_SUCCESS,
@@ -116,12 +117,12 @@ const updateNote = (note) => async (dispatch) => {
     let url = `${process.env.REACT_APP_BACKEND_API}api/notes/${note._id}`;
     const data = await api.put(url, note);
 
+    toast.success("Update note successfully");
+    dispatch(routeActions.redirect("__UPDATE_NOTE__"));
     dispatch({
       type: types.UPDATE_NOTE_SUCCESS,
       payload: data.data.note,
     });
-    toast.success("Update note successfully");
-    dispatch(routeActions.redirect("__UPDATE_NOTE__"));
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.UPDATE_NOTE_FAILURE, payload: error });
@@ -135,12 +136,13 @@ const deleteNote = (noteId) => async (dispatch) => {
 
     const data = await api.delete(url);
     console.log("hahaha", data);
+
+    toast.success("Delete note successfully");
+    dispatch(notesActions.getNotes());
     dispatch({
       type: types.DELETE_NOTE_SUCCESS,
       payload: data,
     });
-    toast.success("Delete note successfully");
-    dispatch(notesActions.getNotes());
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.DELETE_NOTE_FAILURE, payload: error });
