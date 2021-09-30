@@ -11,20 +11,16 @@ import { useHistory } from "react-router-dom";
 import brand from "./brand.png";
 import "./style.css";
 import { IconContext } from "react-icons";
-import * as MdIcons from "react-icons/md";
 
 import { useDispatch, useSelector } from "react-redux";
 import notesActions from "../../redux/actions/note.action";
 import authActions from "../../redux/actions/auth.action";
-import userActions from "../../redux/actions/user.action";
 import { routeActions } from "../../redux/actions/route.action";
 
 const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const loading = useSelector((state) => state.noteReducer.loading)
   const currentUser = useSelector((state) => state.authReducer.user);
-
   const redirectTo = useSelector((state) => state.routeReducer.redirectTo);
 
   useEffect(() => {
@@ -73,7 +69,6 @@ const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
                 className="inbutton"
                 variant="success"
               >
-                <MdIcons.MdNoteAdd className="side-icon" />
                 Create Note
               </Button>
               <Button
@@ -89,7 +84,6 @@ const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
                 variant="outline-light"
                 className="inbutton2"
                 onClick={() => history.push("/notes-collab")}
-                // href="/notes-collab"
               >
                 Collaborative notes
               </Button>
@@ -107,7 +101,6 @@ const SideBar = ({ searchInput, handleSearchInputChange, handleSubmit }) => {
                   id="dropdown-split-basic"
                 />
                 <Dropdown.Menu>
-                  <Dropdown.Item>Edit</Dropdown.Item>
                   <Dropdown.Item onClick={onLogout}>Log out</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

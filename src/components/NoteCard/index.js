@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import './style.css'
 
 import * as FaIcons from "react-icons/fa";
 import * as RiIcons from "react-icons/ri";
@@ -18,12 +19,14 @@ const NoteCard = ({ note }) => {
   const history = useHistory();
 
   return (
-    <Card className="card my-2">
+    <Card className="note-card my-2">
       <Card.Body>
-        <Card.Title className="title">{note.title}</Card.Title>
-        <Card.Subtitle className="sub-title text-muted">
-          <p>{dayjs(note.updatedAt).fromNow()}</p>
-        </Card.Subtitle>
+        <div style={{ height: "60%" }}>
+          <Card.Title className="title">{note.title}</Card.Title>
+          <Card.Subtitle className="sub-title text-muted">
+            <p>{dayjs(note.updatedAt).fromNow()}</p>
+          </Card.Subtitle>
+        </div>
         <div className="button-group">
           <Button
             variant="outline"

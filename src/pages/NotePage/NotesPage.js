@@ -53,7 +53,7 @@ const NotesPage = () => {
             <h2> My Notes</h2>
             <hr className="solid" style={{ color: "white" }}></hr>
           </Row>
-          <Row style={{ paddingRight: "2rem" }}>
+          <Row>
             <NotesOfTag tag="Untagged" />
             {tags?.length > 0 ? (
               tags.map((tag) => <NotesOfTag tag={tag} />)

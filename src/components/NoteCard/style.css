@@ -1,0 +1,14 @@
+.note-card {
+    border-radius: 20px;
+    padding: 0
+}
+
+.note-card .title {
+    margin-bottom: 1rem;
+    font-weight: bolder;
+}
+
+.note-card .sub-title {
+    font-size: small;
+    margin-bottom: 1rem;
+}

@@ -8,7 +8,7 @@
 .side-bar {
   background-color: #121525;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   position: relative;
@@ -38,11 +38,6 @@
 }
 
 .side-bar .button-container .first-button .inbutton {
-  display: flex;
-  align-items: center;
-  padding-left: 2rem;
-  padding-right: 3rem;
-  justify-content: space-evenly;
   margin-bottom: 1rem;
 }
 

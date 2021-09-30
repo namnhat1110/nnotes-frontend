@@ -1,7 +1,6 @@
 .page-container {
   padding-top: 1rem;
   background: #232946;
-  height: calc(100vh - 56px);
   /* background-color: red; */
 }
 
@@ -14,18 +13,17 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   background: white;
-  margin-bottom: 1rem;
-  height: 100%;
   display: block;
+  height: 65vh;
 }
 
 .editor-container .display-box {
-  height: 95%;
+  height: 55vh;
   border: solid 0.25px rgb(192, 192, 192);
   margin-bottom: 0.4rem;
   display: block;
-  /* overflow: hidden; */
-  overflow-y: auto;
+  overflow:hidden;
+  overflow-y: auto
 }
 
 .editor-container .chat-box {
@@ -34,13 +32,15 @@
 }
 
 .footer-container {
-  padding-bottom: 1rem;
   display: flex;
   flex-direction: row;
+  background: #232946;
 }
 
 .footer-container button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   width: 100%;
   background: #b8c1ec;
-  color: #232946;
+  color: #35363d;
 }

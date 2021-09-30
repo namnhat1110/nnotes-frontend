@@ -45,7 +45,7 @@ const CollabPage = () => {
             handleSubmit={handleSubmit}
           />
         </Col>
-        <Col lg="10" className="main-content">
+        <Col xl="10" className="main-content">
           <Row
             style={{ height: "10%", paddingTop: "0.5rem" }}
             className="title-container"
@@ -53,7 +53,7 @@ const CollabPage = () => {
             <h2> Collaborative Notes</h2>
             <hr className="solid" style={{ color: "white" }}></hr>
           </Row>
-          <Row style={{ paddingRight: "2rem" }}>
+          <Row>
             <NotesOfTag tag="Untagged" />
             {tags?.length > 0 ? (
               tags.map((tag) => <NotesOfTag tag={tag} />)

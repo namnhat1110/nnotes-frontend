@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import MDEditor from "@uiw/react-md-editor";
 import TagsInput from "react-tagsinput";
-import ScrollToBottom from "react-scroll-to-bottom";
+import ScrollToBottom from 'react-scroll-to-bottom';
 import "react-tagsinput/react-tagsinput.css";
 import "./style.css";
 
@@ -16,6 +16,7 @@ import { routeActions } from "../../redux/actions/route.action";
 import socketIOClient from "socket.io-client";
 import { toast } from "react-toastify";
 let socket;
+
 const socketTypes = {
   NOTIFICATION: "NOTIFICATION",
   ERROR: "ERROR",
@@ -33,6 +34,7 @@ const CreatePage = () => {
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  console.log(onlineUsers)
   const params = useParams();
   const noteId = params.id;
 
@@ -122,7 +124,7 @@ const CreatePage = () => {
     return () => {
       if (socket) socket.disconnect();
     };
-  }, [accessToken, selectedNote]);
+  }, [accessToken, selectedNote, dispatch]);
 
   const handleSendComment = (e) => {
     e.preventDefault();
@@ -137,7 +139,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="vh-100 bg-grey">
+    <div>
       <NavigationBar />
       <Container
         fluid
@@ -159,12 +161,12 @@ const CreatePage = () => {
             disabled={!isAuthor}
           />
         </Row>
-        <Row className="editor-container h-100">
+        <Row className="editor-container">
           <Col lg="9">
             <MDEditor
               value={content}
               onChange={(newValue) => setContent(newValue)}
-              height="760"
+              height="440"
               preview={isAuthor ? "live" : "preview"}
               hideToolbar={!isAuthor}
             />
@@ -219,7 +221,9 @@ const CreatePage = () => {
               </Col>
             </>
           ) : (
-            <></>
+            <>
+
+            </>
           )}
         </Row>
       </Container>
