@@ -13,14 +13,9 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   background: white;
-  display: block;
-  /* height: 65vh; */
+  display: flex
 }
 
-.editor-container .chat-box {
-  background: royalblue;
-  width: 100%;
-}
 
 .footer-container {
   display: flex;
