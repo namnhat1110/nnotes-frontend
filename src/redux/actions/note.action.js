@@ -161,7 +161,6 @@ const inviteCollaborator = (email, noteId) => async (dispatch) => {
       payload: data.data.note,
     });
     toast.success("Invite collaborators successfully");
-    dispatch(routeActions.redirect("/notes"));
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.INVITE_COLLAB_FAILURE, payload: error });

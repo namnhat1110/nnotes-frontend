@@ -19,7 +19,7 @@ const EmailForm = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSendInvite = (e) => {
     e.preventDefault();
     dispatch(notesActions.inviteCollaborator(email, noteId));
   };
@@ -63,7 +63,7 @@ const EmailForm = () => {
                 <input
                   type="email"
                   placeholder="email"
-                  name="email"
+                  name="receiver"
                   className="form-control"
                   value={email}
                   onChange={handleOnEmail}
@@ -84,7 +84,7 @@ const EmailForm = () => {
                   type="submit"
                   value="Send"
                   className="form-control btn"
-                  onClick={handleSubmit}
+                  onMouseDown={handleSendInvite}
                 />
               </Col>
             </Row>

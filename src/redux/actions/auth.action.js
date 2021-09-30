@@ -1,7 +1,6 @@
 import * as types from "../constants/auth.constant";
 import api from "../../apiService";
 import { toast } from "react-toastify";
-import { routeActions } from "./route.action";
 
 const login = (user) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST, payload: null });
@@ -21,7 +20,6 @@ const login = (user) => async (dispatch) => {
       payload: data.data,
     });
     toast.success("Login successfully!");
-    // dispatch(routeActions.redirect(`/notes`));
   } catch (error) {
     toast.error(error.message);
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
